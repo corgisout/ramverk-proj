@@ -2,7 +2,6 @@
 
 namespace Anax\View;
 
-// Gather incoming variables and use default values if not set
 $info = isset($info) ? $info : null;
 $activeUser = isset($activeUser) ? $activeUser : null;
 $profilePicture = isset($profilePicture) ? $profilePicture : null;

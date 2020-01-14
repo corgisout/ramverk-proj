@@ -2,11 +2,7 @@
 
 namespace Anax\View;
 
-/**
- * View to update user.
- */
 
-// Create url for navigation
 $urlToProfile = url("user/profile/$id");
 
 

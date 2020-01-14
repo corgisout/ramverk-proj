@@ -2,7 +2,6 @@
 
 namespace Anax\View;
 
-// Gather incoming variables and use default values if not set
 $questions = isset($questions) ? $questions : null;
 $tag = isset($tag) ? $tag : null;
 $tagQuestions = [];
