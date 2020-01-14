@@ -100,7 +100,7 @@ class UpdateUserForm extends FormModel
         $user->username = $this->form->value("username");
         $user->firstname = $this->form->value("firstname");
         $user->lastname = $this->form->value("lastname");
-        $user->email = $this->form->value("email")
+        $user->email = $this->form->value("email");
         $user->save();
 
 
