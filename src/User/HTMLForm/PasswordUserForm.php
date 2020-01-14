@@ -86,7 +86,7 @@ class PasswordUserForm extends FormModel
         $user->setDb($this->di->get("dbqb"));
         $user->find("id", $this->form->value("id"));
 
-        $user->setPassword($this->form->value("password"););
+        $user->setPassword($this->form->value("password"));
         $user->save();
 
 
