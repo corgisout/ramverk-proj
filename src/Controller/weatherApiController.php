@@ -31,25 +31,25 @@ class weatherApiController implements ContainerInjectableInterface
             $locationInfo = $weather->getLocationData($res["city"]);
         } else {
             if (!isset($search)){
-               $locationInfo = $weather->getLocationData("");
-           } else{
-               $locationInfo = $weather->getLocationData($search);
-           }
-       }
-       $lon = $locationInfo["lon"] ?? null;
-       $lat = $locationInfo["lat"] ?? null;
-       if (!isset($locationInfo["error"])){
+                $locationInfo = $weather->getLocationData("");
+            } else{
+                $locationInfo = $weather->getLocationData($search);
+            }
+        }
+        $lon = $locationInfo["lon"] ?? null;
+        $lat = $locationInfo["lat"] ?? null;
+        if (!isset($locationInfo["error"])){
 
-           $weatherInfo = $weather->getWeatherMultiCurl($when,$lon,$lat);
-       } else {
-           $weatherInfo = ["error" => "that is not a city"];
-       }
+            $weatherInfo = $weather->getWeatherMultiCurl($when,$lon,$lat);
+        } else {
+            $weatherInfo = ["error" => "that is not a city"];
+        }
         $data = [
             "location" => $search ?? null,
             "lon" => $lon ?? null,
             "lat" => $lat ?? null,
             "weatherInfo" => $weatherInfo,
         ];
-        return [$data];
+        return [ $data ];
     }
 }

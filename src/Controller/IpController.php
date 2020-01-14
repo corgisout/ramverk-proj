@@ -31,29 +31,29 @@ class ipController implements ContainerInjectableInterface
      *
      * @return string
      */
-     public function indexAction() : object
-     {
-         $page = $this->di->get("page");
+        public function indexAction() : object
+        {
+            $page = $this->di->get("page");
 
-         $ip = $this->di->request->getServer("REMOTE_ADDR");
-         if (isset($_GET['submit'])) {
-             $ip = $this->di->request->getGet("ip");
-         }
-         $validator = new \Anax\Model\ipValidation;
-         $res = $validator->toJson($ip);
-         $data = [
-             "valid" => $res["valid"],
-             "ip" => $ip,
-             "domain" => $res["domain"],
-             "ipv" => $res["ipv"],
-             "lat" => $res["lat"],
-             "lon" => $res["lon"],
-             "country" => $res["country"],
-             "city" => $res["city"]
-         ];
-         $page->add("ipVerification/ipJson", $data);
+            $ip = $this->di->request->getServer("REMOTE_ADDR");
+            if (isset($_GET['submit'])) {
+                $ip = $this->di->request->getGet("ip");
+            }
+            $validator = new \Anax\Model\ipValidation;
+            $res = $validator->toJson($ip);
+            $data = [
+                "valid" => $res["valid"],
+                "ip" => $ip,
+                "domain" => $res["domain"],
+                "ipv" => $res["ipv"],
+                "lat" => $res["lat"],
+                "lon" => $res["lon"],
+                "country" => $res["country"],
+                "city" => $res["city"]
+            ];
+            $page->add("ipVerification/ipJson", $data);
 
-         return $page->render();
-     }
+            return $page->render();
+        }
 
 }

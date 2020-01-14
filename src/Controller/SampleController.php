@@ -68,17 +68,17 @@ class SampleController implements ContainerInjectableInterface
      *
      * @return string
      */
-     public function jsonActionGet() : array
-     {
-         // Deal with the action and return a response.
-         $services = implode(", ", $this->di->getServices());
-         $json = [
-             "message" => __METHOD__ . "<p>\$di
+        public function jsonActionGet() : array
+        {
+            // Deal with the action and return a response.
+            $services = implode(", ", $this->di->getServices());
+            $json = [
+                "message" => __METHOD__ . "<p>\$di
              contains: $services",
-             "di" => $this->di->getServices(),
-         ];
-         return [$json];
-     }
+                "di" => $this->di->getServices(),
+            ];
+            return [$json];
+        }
 
 
 

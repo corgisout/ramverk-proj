@@ -29,38 +29,38 @@ class UpdateUserForm extends FormModel
             [
                 "id" => [
                     "type" => "hidden",
-                    "validation" => ["not_empty"],
+                    "validation" => [ "not_empty" ],
                     "readonly" => true,
                     "value" => $user->id,
                 ],
 
                 "username" => [
                     "type" => "text",
-                    "validation" => ["not_empty"],
+                    "validation" => [ "not_empty" ],
                     "value" => $user->username,
                 ],
 
                 "firstname" => [
                     "type" => "text",
-                    "validation" => ["not_empty"],
+                    "validation" => [ "not_empty" ],
                     "value" => $user->firstname,
                 ],
 
                 "lastname" => [
                     "type" => "text",
-                    "validation" => ["not_empty"],
+                    "validation" => [ "not_empty" ],
                     "value" => $user->lastname,
                 ],
                 "email" => [
                     "type" => "text",
-                    "validation" => ["not_empty"],
+                    "validation" => [ "not_empty" ],
                     "value" => $user->email,
                 ],
 
                 "submit" => [
                     "type" => "submit",
                     "value" => "Save",
-                    "callback" => [$this, "callbackSubmit"]
+                    "callback" => [ $this, "callbackSubmit" ]
                 ],
 
             ]

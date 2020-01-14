@@ -8,12 +8,12 @@ return [
         "weather" => [
             "active" => false,
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $weather = new \Anax\Model\Weather();
                 $cfg = $this->get("configuration");
                 $config = $cfg->load("apiKey.php");
-                $locationiqKey = $config["config"]["locationiq"];
-                $darkskyKey = $config["config"]["darksky"];
+                $locationiqKey = $config[ "config" ][ "locationiq" ];
+                $darkskyKey = $config[ "config" ][ "darksky" ];
                 $weather->setApiKeys($locationiqKey, $darkskyKey);
                 return $weather;
             },

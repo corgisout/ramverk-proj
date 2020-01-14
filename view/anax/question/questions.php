@@ -15,7 +15,7 @@ $urlToQuestion = url("question");
 <?php if (!$items) : ?>
     <p>There are no questions posted yet why not be the first?</p>
 
-<?php endif;?>
+<?php endif; ?>
 <div class="main" style="white-space: normal; overflow: hidden; text-overflow: ellipsis;">
 
 <p>

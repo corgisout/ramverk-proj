@@ -8,7 +8,7 @@ return [
         "session" => [
             "active" => defined("ANAX_WITH_SESSION") && ANAX_WITH_SESSION, // true|false
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $session = new \Anax\Session\Session();
 
                 // Load the configuration files
@@ -16,7 +16,7 @@ return [
                 $config = $cfg->load("session");
 
                 // Set session name
-                $name = $config["config"]["name"] ?? null;
+                $name = $config[ "config" ][ "name" ] ?? null;
                 if (is_string($name)) {
                     $session->name($name);
                 }

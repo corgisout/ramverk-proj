@@ -4,9 +4,9 @@ namespace Anax\View;
 
 $questions = isset($questions) ? $questions : null;
 $users = isset($users) ? $users : null;
-$allTags = [];
-$allUsers = [];
-$userActive = [];
+$allTags = [ ];
+$allUsers = [ ];
+$userActive = [ ];
 
 foreach ($questions as $question) {
     if ($question->tags != null) {

@@ -22,7 +22,6 @@ class ErrorHandlerController implements ContainerInjectableInterface
      * @param string $message with details.
      *
      * @throws Anax\Route\Exception\NotFoundException
-
      * @return object as the response.
      */
     public function catchAll(...$args) : object
@@ -52,13 +51,13 @@ class ErrorHandlerController implements ContainerInjectableInterface
         $page->add(
             "anax/v2/error/default",
             [
-                "header" => $pages[$path][0],
-                "text" => $pages[$path][1],
+                "header" => $pages[ $path ][ 0 ],
+                "text" => $pages[ $path ][ 1 ],
             ]
         );
 
         return $page->render([
-            "title" => $pages[$path][0] . $title
+            "title" => $pages[ $path ][ 0 ] . $title
         ], $path);
     }
 }

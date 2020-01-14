@@ -6,14 +6,14 @@ namespace Anax\View;
 $info = isset($info) ? $info : null;
 $activeUser = isset($activeUser) ? $activeUser : null;
 $profilePicture = isset($profilePicture) ? $profilePicture : null;
-$questions = isset($questions) ? $questions : [];
-$answers = isset($answers) ? $answers : [];
+$questions = isset($questions) ? $questions : [ ];
+$answers = isset($answers) ? $answers : [ ];
 $urlToUpdate = url("user/update/$info->id");
 $urlToPassword = url("user/password/$info->id");
 $urlToLogOut = url("user/logout");
 
-$userAnswers = [];
-$userQuestions = [];
+$userAnswers = [ ];
+$userQuestions = [ ];
 
 foreach ($questions as $question) {
     foreach ($answers as $answer) {

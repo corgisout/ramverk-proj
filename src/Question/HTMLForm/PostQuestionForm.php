@@ -45,7 +45,7 @@ class PostQuestionForm extends FormModel
                 "submit" => [
                     "type" => "submit",
                     "value" => "Post question",
-                    "callback" => [$this, "callbackSubmit"]
+                    "callback" => [ $this, "callbackSubmit" ]
                 ],
             ]
         );

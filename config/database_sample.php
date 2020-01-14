@@ -14,7 +14,7 @@
  *  "dsn" => "sqlite:memory::",
  *
  */
-if ($_SERVER["SERVER_NAME"] === "www.student.bth.se") {
+if ($_SERVER[ "SERVER_NAME" ] === "www.student.bth.se") {
     return [
         "dsn"             => "mysql:host=blu-ray.student.bth.se;dbname=mos;",
         "username"        => "mos",

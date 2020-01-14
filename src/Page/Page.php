@@ -52,7 +52,7 @@ class Page implements ContainerInjectableInterface
      */
     public function add(
         $template,
-        array $data = [],
+        array $data = [ ],
         string $region = "main",
         int $sort = 0
     ) : object {
@@ -71,7 +71,7 @@ class Page implements ContainerInjectableInterface
      *
      * @return object
      */
-    public function render(array $data = [], int $status = 200)
+    public function render(array $data = [ ], int $status = 200)
     {
         $view = $this->di->get("view");
         $view->add($this->layout, $data, "layout");
