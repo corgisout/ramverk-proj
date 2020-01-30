@@ -7,7 +7,7 @@ return [
     "services" => [
         "dbqb" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $db = new \Anax\DatabaseQueryBuilder\DatabaseQueryBuilder();
 
                 // Load the configuration files
@@ -15,7 +15,7 @@ return [
                 $config = $cfg->load("database");
 
                 // Set the database configuration
-                $connection = $config["config"] ?? [];
+                $connection = $config[ "config" ] ?? [ ];
                 $db->setOptions($connection);
                 $db->setDefaultsFromConfiguration();
 

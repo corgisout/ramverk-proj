@@ -23,7 +23,7 @@ class StyleChooserController implements ContainerInjectableInterface
      */
     private $cssUrl = "css";
     private $cssDir = ANAX_INSTALL_PATH . "/htdocs/css";
-    private $styles = [];
+    private $styles = [ ];
     private static $key = "AnaxStyleChooser";
 
 
@@ -54,12 +54,12 @@ class StyleChooserController implements ContainerInjectableInterface
             $url = "{$this->cssUrl}/$filename";
             $content = file_get_contents($file);
             $comment = strstr($content, "*/", true);
-            $comment = preg_replace(["#\/\*!#", "#\*#"], "", $comment);
+            $comment = preg_replace([ "#\/\*!#", "#\*#" ], "", $comment);
             $comment = preg_replace("#@#", "<br>@", $comment);
             $first = strpos($comment, ".");
             $short = substr($comment, 0, $first + 1);
             $long = substr($comment, $first + 1);
-            $this->styles[$url] = [
+            $this->styles[ $url ] = [
                 "shortDescription" => $short,
                 "longDescription" => $long,
             ];
@@ -68,7 +68,7 @@ class StyleChooserController implements ContainerInjectableInterface
         foreach ($this->styles as $key => $value) {
             $isMinified = strstr($key, ".min.css", true);
             if ($isMinified) {
-                unset($this->styles["$isMinified.css"]);
+                unset($this->styles[ "$isMinified.css" ]);
             }
         }
     }
@@ -92,8 +92,8 @@ class StyleChooserController implements ContainerInjectableInterface
         $page->add("anax/stylechooser/index", [
             "styles" => $this->styles,
             "activeStyle" => $active,
-            "activeShortDescription" => $this->styles[$active]["shortDescription"] ?? null,
-            "activeLongDescription" => $this->styles[$active]["longDescription"] ?? null,
+            "activeShortDescription" => $this->styles[ $active ][ "shortDescription" ] ?? null,
+            "activeLongDescription" => $this->styles[ $active ][ "longDescription" ] ?? null,
         ]);
 
         return $page->render([

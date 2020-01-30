@@ -58,7 +58,7 @@ class SampleJsonController implements ContainerInjectableInterface
         $json = [
             "message" => __METHOD__ . ", \$db is {$this->db}",
         ];
-        return [$json];
+        return [ $json ];
     }
 
 
@@ -77,7 +77,7 @@ class SampleJsonController implements ContainerInjectableInterface
             "message" => __METHOD__ . "<p>\$di contains: $services",
             "di" => $this->di->getServices(),
         ];
-        return [$json];
+        return [ $json ];
     }
 
 
@@ -94,6 +94,6 @@ class SampleJsonController implements ContainerInjectableInterface
         $json = [
             "message" => __METHOD__ . ", forbidden to access.",
         ];
-        return [$json, 403];
+        return [ $json, 403 ];
     }
 }

@@ -7,7 +7,7 @@ return [
     "services" => [
         "db" => [
             "shared" => true,
-            "callback" => function () {
+            "callback" => function() {
                 $db = new \Anax\Database\Database();
 
                 // Load the configuration files
@@ -15,7 +15,7 @@ return [
                 $config = $cfg->load("database");
 
                 // Set the database configuration
-                $connection = $config["config"] ?? [];
+                $connection = $config[ "config" ] ?? [ ];
                 $db->setOptions($connection);
 
                 return $db;

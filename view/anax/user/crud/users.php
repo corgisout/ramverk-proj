@@ -29,12 +29,15 @@ endif;
 
 <?php if ($activeUser == true) : ?>
     <a href="<?= $urlToProfile ?>"><button>Your Profile</button></a>
-<?php else : ?>
+<?php else {
+    : ?>
     <p>
         <a href="<?= $urlToLogin ?>"><button>Log in</button></a>
         <a href="<?= $urlToCreate ?>"><button>Create new User</button></a>
     </p>
-<?php endif; ?>
+<?php endif;
+}
+?>
 <table>
     <tr>
         <th style="width: 50%">username</th>

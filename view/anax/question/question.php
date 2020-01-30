@@ -3,10 +3,10 @@
 namespace Anax\View;
 
 $question = isset($question) ? $question : null;
-$tags = isset($tags) ? $tags : [];
-$users = isset($users) ? $users : [];
-$answers = isset($answers) ? $answers : [];
-$comments = isset($comments) ? $comments : [];
+$tags = isset($tags) ? $tags : [ ];
+$users = isset($users) ? $users : [ ];
+$answers = isset($answers) ? $answers : [ ];
+$comments = isset($comments) ? $comments : [ ];
 
 $urlToQuestions = url("question");
 $urlToAnswer = url("question/answer/$question->id");

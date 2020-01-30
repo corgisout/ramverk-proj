@@ -11,7 +11,7 @@
 /**
  * Custom exception handler.
  */
-set_exception_handler(function ($exception) {
+set_exception_handler(function($exception) {
     errorPage(
         "<p><b>img.php: Uncaught exception:</b> <p>"
         . $exception->getMessage()
@@ -28,7 +28,7 @@ set_exception_handler(function ($exception) {
  * Get configuration options from file, if the file exists, else use $config
  * if its defined or create an empty $config.
  */
-$configFile = __DIR__.'/'.basename(__FILE__, '.php').'_config.php';
+$configFile = __DIR__ . '/' . basename(__FILE__, '.php') . '_config.php';
 
 if (is_file($configFile)) {
     $config = require $configFile;
@@ -47,11 +47,11 @@ if (!defined("CIMAGE_DEBUG")) {
  * Setup the autoloader, but not when using a bundle.
  */
 if (!defined("CIMAGE_BUNDLE")) {
-    if (!isset($config["autoloader"])) {
+    if (!isset($config[ "autoloader" ])) {
         die("CImage: Missing autoloader.");
     }
 
-    require $config["autoloader"];
+    require $config[ "autoloader" ];
 }
 
 
@@ -184,8 +184,8 @@ verbose("password match = $passwordMatch");
 $allowHotlinking = getConfig('allow_hotlinking', true);
 $hotlinkingWhitelist = getConfig('hotlinking_whitelist', array());
 
-$serverName  = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : null;
-$referer     = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
+$serverName  = isset($_SERVER[ 'SERVER_NAME' ]) ? $_SERVER[ 'SERVER_NAME' ] : null;
+$referer     = isset($_SERVER[ 'HTTP_REFERER' ]) ? $_SERVER[ 'HTTP_REFERER' ] : null;
 $refererHost = parse_url($referer, PHP_URL_HOST);
 
 if (!$allowHotlinking) {
@@ -307,10 +307,10 @@ $shortcutConfig = getConfig('shortcut', array(
 verbose("shortcut = $shortcut");
 
 if (isset($shortcut)
-    && isset($shortcutConfig[$shortcut])) {
+    && isset($shortcutConfig[ $shortcut ])) {
 
-    parse_str($shortcutConfig[$shortcut], $get);
-    verbose("shortcut-constant = {$shortcutConfig[$shortcut]}");
+    parse_str($shortcutConfig[ $shortcut ], $get);
+    verbose("shortcut-constant = {$shortcutConfig[ $shortcut ]}");
     $_GET = array_merge($_GET, $get);
 }
 
@@ -404,7 +404,7 @@ verbose("src = $srcImage");
  * Manage size constants from config file, use constants to replace values
  * for width and height.
  */
-$sizeConstant = getConfig('size_constant', function () {
+$sizeConstant = getConfig('size_constant', function() {
 
     // Set sizes to map constant to value, easier to use with width or height
     $sizes = array(
@@ -418,7 +418,7 @@ $sizeConstant = getConfig('size_constant', function () {
     $gridColumns     = 24;
 
     for ($i = 1; $i <= $gridColumns; $i++) {
-        $sizes['c' . $i] = ($gridColumnWidth + $gridGutterWidth) * $i - $gridGutterWidth;
+        $sizes[ 'c' . $i ] = ($gridColumnWidth + $gridGutterWidth) * $i - $gridGutterWidth;
     }
 
     return $sizes;
@@ -435,12 +435,12 @@ $newWidth     = get(array('width', 'w'));
 $maxWidth     = getConfig('max_width', 2000);
 
 // Check to replace predefined size
-if (isset($sizes[$newWidth])) {
-    $newWidth = $sizes[$newWidth];
+if (isset($sizes[ $newWidth ])) {
+    $newWidth = $sizes[ $newWidth ];
 }
 
 // Support width as % of original width
-if ($newWidth[strlen($newWidth)-1] == '%') {
+if ($newWidth[ strlen($newWidth) - 1 ] == '%') {
     is_numeric(substr($newWidth, 0, -1))
         or errorPage('Width % not numeric.', 404);
 } else {
@@ -460,12 +460,12 @@ $newHeight = get(array('height', 'h'));
 $maxHeight = getConfig('max_height', 2000);
 
 // Check to replace predefined size
-if (isset($sizes[$newHeight])) {
-    $newHeight = $sizes[$newHeight];
+if (isset($sizes[ $newHeight ])) {
+    $newHeight = $sizes[ $newHeight ];
 }
 
 // height
-if ($newHeight[strlen($newHeight)-1] == '%') {
+if ($newHeight[ strlen($newHeight) - 1 ] == '%') {
     is_numeric(substr($newHeight, 0, -1))
         or errorPage('Height % out of range.', 404);
 } else {
@@ -482,25 +482,25 @@ verbose("new height = $newHeight");
  * aspect-ratio, ar - affecting the resulting image width, height and resize options
  */
 $aspectRatio         = get(array('aspect-ratio', 'ar'));
-$aspectRatioConstant = getConfig('aspect_ratio_constant', function () {
+$aspectRatioConstant = getConfig('aspect_ratio_constant', function() {
     return array(
-        '3:1'    => 3/1,
-        '3:2'    => 3/2,
-        '4:3'    => 4/3,
-        '8:5'    => 8/5,
-        '16:10'  => 16/10,
-        '16:9'   => 16/9,
+        '3:1'    => 3 / 1,
+        '3:2'    => 3 / 2,
+        '4:3'    => 4 / 3,
+        '8:5'    => 8 / 5,
+        '16:10'  => 16 / 10,
+        '16:9'   => 16 / 9,
         'golden' => 1.618,
     );
 });
 
 // Check to replace predefined aspect ratio
 $aspectRatios = call_user_func($aspectRatioConstant);
-$negateAspectRatio = ($aspectRatio[0] == '!') ? true : false;
+$negateAspectRatio = ($aspectRatio[ 0 ] == '!') ? true : false;
 $aspectRatio = $negateAspectRatio ? substr($aspectRatio, 1) : $aspectRatio;
 
-if (isset($aspectRatios[$aspectRatio])) {
-    $aspectRatio = $aspectRatios[$aspectRatio];
+if (isset($aspectRatios[ $aspectRatio ])) {
+    $aspectRatio = $aspectRatios[ $aspectRatio ];
 }
 
 if ($negateAspectRatio) {
@@ -568,7 +568,7 @@ verbose("fill-to-fit = $fillToFit");
 if ($fillToFit !== null) {
 
     if (!empty($fillToFit)) {
-        $bgColor   = $fillToFit;
+        $bgColor = $fillToFit;
         verbose("fillToFit changed bgColor to = $bgColor");
     }
 
@@ -755,13 +755,13 @@ verbose("autoRotate = $autoRotate");
 $filters = array();
 $filter = get(array('filter', 'f'));
 if ($filter) {
-    $filters[] = $filter;
+    $filters[ ] = $filter;
 }
 
 for ($i = 0; $i < 10; $i++) {
     $filter = get(array("filter{$i}", "f{$i}"));
     if ($filter) {
-        $filters[] = $filter;
+        $filters[ ] = $filter;
     }
 }
 
@@ -791,25 +791,25 @@ if ($outputFormat == 'ascii') {
     $options = get('ascii');
     $options = explode(',', $options);
 
-    if (isset($options[0]) && !empty($options[0])) {
-        $defaultOptions['characterSet'] = $options[0];
+    if (isset($options[ 0 ]) && !empty($options[ 0 ])) {
+        $defaultOptions[ 'characterSet' ] = $options[ 0 ];
     }
 
-    if (isset($options[1]) && !empty($options[1])) {
-        $defaultOptions['scale'] = $options[1];
+    if (isset($options[ 1 ]) && !empty($options[ 1 ])) {
+        $defaultOptions[ 'scale' ] = $options[ 1 ];
     }
 
-    if (isset($options[2]) && !empty($options[2])) {
-        $defaultOptions['luminanceStrategy'] = $options[2];
+    if (isset($options[ 2 ]) && !empty($options[ 2 ])) {
+        $defaultOptions[ 'luminanceStrategy' ] = $options[ 2 ];
     }
 
     if (count($options) > 3) {
         // Last option is custom character string
-        unset($options[0]);
-        unset($options[1]);
-        unset($options[2]);
+        unset($options[ 0 ]);
+        unset($options[ 1 ]);
+        unset($options[ 2 ]);
         $characterString = implode($options);
-        $defaultOptions['customCharacterSet'] = $characterString;
+        $defaultOptions[ 'customCharacterSet' ] = $characterString;
     }
 
     $img->setAsciiOptions($defaultOptions);
@@ -983,7 +983,7 @@ if ($srgb || $srgbDefault) {
 if ($status) {
     $text  = "img.php version = " . CIMAGE_VERSION . "\n";
     $text .= "PHP version = " . PHP_VERSION . "\n";
-    $text .= "Running on: " . $_SERVER['SERVER_SOFTWARE'] . "\n";
+    $text .= "Running on: " . $_SERVER[ 'SERVER_SOFTWARE' ] . "\n";
     $text .= "Allow remote images = $allowRemote\n";
 
     $res = $cache->getStatusOfSubdir("");
@@ -1015,10 +1015,10 @@ if ($status) {
     $no = extension_loaded('gd') ? null : 'NOT';
     $text .= "Extension gd is $no loaded.<br>";
 
-    $text .= checkExternalCommand("PNG LOSSY", $postProcessing["png_lossy"], $postProcessing["png_lossy_cmd"]);
-    $text .= checkExternalCommand("PNG FILTER", $postProcessing["png_filter"], $postProcessing["png_filter_cmd"]);
-    $text .= checkExternalCommand("PNG DEFLATE", $postProcessing["png_deflate"], $postProcessing["png_deflate_cmd"]);
-    $text .= checkExternalCommand("JPEG OPTIMIZE", $postProcessing["jpeg_optimize"], $postProcessing["jpeg_optimize_cmd"]);
+    $text .= checkExternalCommand("PNG LOSSY", $postProcessing[ "png_lossy" ], $postProcessing[ "png_lossy_cmd" ]);
+    $text .= checkExternalCommand("PNG FILTER", $postProcessing[ "png_filter" ], $postProcessing[ "png_filter_cmd" ]);
+    $text .= checkExternalCommand("PNG DEFLATE", $postProcessing[ "png_deflate" ], $postProcessing[ "png_deflate_cmd" ]);
+    $text .= checkExternalCommand("JPEG OPTIMIZE", $postProcessing[ "jpeg_optimize" ], $postProcessing[ "jpeg_optimize_cmd" ]);
 
     if (!$no) {
         $text .= print_r(gd_info(), 1);
@@ -1101,12 +1101,12 @@ if (is_callable($hookBeforeCImage)) {
  */
 if ($verbose) {
     $query = array();
-    parse_str($_SERVER['QUERY_STRING'], $query);
-    unset($query['verbose']);
-    unset($query['v']);
-    unset($query['nocache']);
-    unset($query['nc']);
-    unset($query['json']);
+    parse_str($_SERVER[ 'QUERY_STRING' ], $query);
+    unset($query[ 'verbose' ]);
+    unset($query[ 'v' ]);
+    unset($query[ 'nocache' ]);
+    unset($query[ 'nc' ]);
+    unset($query[ 'json' ]);
     $url1 = '?' . htmlentities(urldecode(http_build_query($query)));
     $url2 = '?' . urldecode(http_build_query($query));
     echo <<<EOD

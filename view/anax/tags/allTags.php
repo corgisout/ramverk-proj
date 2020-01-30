@@ -3,7 +3,7 @@
 namespace Anax\View;
 
 $questions = isset($questions) ? $questions : null;
-$allTags = [];
+$allTags = [ ];
 
 foreach ($questions as $question) {
     if ($question->tags != null) {

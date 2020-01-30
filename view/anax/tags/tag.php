@@ -4,7 +4,7 @@ namespace Anax\View;
 
 $questions = isset($questions) ? $questions : null;
 $tag = isset($tag) ? $tag : null;
-$tagQuestions = [];
+$tagQuestions = [ ];
 
 foreach ($questions as $question) {
     $tags = explode(" ", $question->tags);

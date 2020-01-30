@@ -56,7 +56,7 @@ class CreateUserForm extends FormModel
                 "submit" => [
                     "type" => "submit",
                     "value" => "Create user",
-                    "callback" => [$this, "callbackSubmit"]
+                    "callback" => [ $this, "callbackSubmit" ]
                 ],
             ]
         );
@@ -70,40 +70,40 @@ class CreateUserForm extends FormModel
      *
      * @return boolean true if okey, false if something went wrong.
      */
-     public function callbackSubmit()
-     {
-         $username = $this->form->value("username");
-         $firstname = $this->form->value("firstname");
-         $lastname = $this->form->value("lastname");
-         $email = $this->form->value("email");
-         $password = $this->form->value("password");
-         $passwordCheck = $this->form->value("password-again");
+        public function callbackSubmit()
+        {
+            $username = $this->form->value("username");
+            $firstname = $this->form->value("firstname");
+            $lastname = $this->form->value("lastname");
+            $email = $this->form->value("email");
+            $password = $this->form->value("password");
+            $passwordCheck = $this->form->value("password-again");
 
 
-         if ($username == "" || $firstname == "" || $lastname == "" || $email == "" || $password == "") {
-             $this->form->rememberValues();
-             $this->form->addOutput("please fill in all fields");
-             return false;
-         }
-         $user = new User();
-         $user->setDb($this->di->get("dbqb"));
-         $user->username = $this->form->value("username");
-         $user->firstname = $this->form->value("firstname");
-         $user->lastname = $this->form->value("lastname");
-         $user->email = $this->form->value("email");
-         $user->setPassword($password);
+            if ($username == "" || $firstname == "" || $lastname == "" || $email == "" || $password == "") {
+                $this->form->rememberValues();
+                $this->form->addOutput("please fill in all fields");
+                return false;
+            }
+            $user = new User();
+            $user->setDb($this->di->get("dbqb"));
+            $user->username = $this->form->value("username");
+            $user->firstname = $this->form->value("firstname");
+            $user->lastname = $this->form->value("lastname");
+            $user->email = $this->form->value("email");
+            $user->setPassword($password);
 
-         try {
-             $user->save();
-         } catch (Exception $e) {
-             $this->form->rememberValues();
-             $this->form->addOutput("that username is already taken");
-             return false;
-         }
+            try {
+                $user->save();
+            } catch (Exception $e) {
+                $this->form->rememberValues();
+                $this->form->addOutput("that username is already taken");
+                return false;
+            }
 
 
 
-         $this->form->addOutput("your user was created.");
-         return true;
-     }
- }
+            $this->form->addOutput("your user was created.");
+            return true;
+        }
+    }

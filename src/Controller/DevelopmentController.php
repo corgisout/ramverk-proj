@@ -21,7 +21,6 @@ class DevelopmentController implements ContainerInjectableInterface
      * @param array $args as a variadic to catch all arguments.
      *
      * @throws Anax\Route\Exception\NotFoundException when route is not found.
-
      * @return object as the response.
      *
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
@@ -47,14 +46,14 @@ class DevelopmentController implements ContainerInjectableInterface
 
         $page = $this->di->get("page");
         $page->add(
-            "anax/v2/dev/{$pages[$path]}",
+            "anax/v2/dev/{$pages[ $path ]}",
             [
                 "mount" => "dev/"
             ]
         );
 
         return $page->render([
-            "title" => ucfirst($pages[$path]),
+            "title" => ucfirst($pages[ $path ]),
             "baseTitle" => " | Anax development utilities"
         ]);
     }

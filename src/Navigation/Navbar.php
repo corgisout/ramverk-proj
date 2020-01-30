@@ -84,7 +84,7 @@ class Navbar
 
         // Create the ul li menu from the array, use an anonomous recursive
         // function that returns an array of values.
-        $createMenu = function (
+        $createMenu = function(
             $items,
             $ulId = null,
             $ulClass = null
@@ -102,8 +102,8 @@ class Navbar
                 $subMenuClass   = null;
                 $selectedParent = null;
 
-                if (isset($item["submenu"])) {
-                    list($subMenu, $selectedParent) = $createMenu($item["submenu"]["items"]);
+                if (isset($item[ "submenu" ])) {
+                    list($subMenu, $selectedParent) = $createMenu($item[ "submenu" ][ "items" ]);
                     $selectedParent = $selectedParent
                         ? "selected-parent "
                         : null;
@@ -112,24 +112,24 @@ class Navbar
                 }
 
                 // Check if the current menuitem is selected
-                if (!isset($item["url"])) {
+                if (!isset($item[ "url" ])) {
                     var_dump($item);
                 }
-                $selected = $this->check($item["url"])
+                $selected = $this->check($item[ "url" ])
                     ? "selected "
                     : null;
 
                 // Check if the menuitem is a parent of current page, /controller for /controller/action
                 $isParent = null;
-                if (isset($item["mark-if-parent"]) && $item["mark-if-parent"] == true) {
-                    $isParent = $this->isParent($item["url"])
+                if (isset($item[ "mark-if-parent" ]) && $item[ "mark-if-parent" ] == true) {
+                    $isParent = $this->isParent($item[ "url" ])
                         ? "selected-parent "
                         : null;
                 }
 
                 // Is there a class set for this item, then use it
-                $class = isset($item["class"]) && ! is_null($item["class"])
-                    ? $item["class"]
+                $class = isset($item[ "class" ]) && !is_null($item[ "class" ])
+                    ? $item[ "class" ]
                     : null;
 
                 // Prepare the class-attribute, if used
@@ -139,8 +139,8 @@ class Navbar
 
                 // Add the menu item
                 // $url = $menu["create_url"]($item["url"]);
-                $url = $this->url($item["url"]);
-                $html .= "\n<li{$class}>{$subMenuButton}<a href='{$url}' title='{$item['title']}'>{$item['text']}</a>{$subMenu}</li>\n";
+                $url = $this->url($item[ "url" ]);
+                $html .= "\n<li{$class}>{$subMenuButton}<a href='{$url}' title='{$item[ 'title' ]}'>{$item[ 'text' ]}</a>{$subMenu}</li>\n";
 
                 // To remember there is selected children when going up the menu hierarchy
                 if ($selected) {
@@ -153,21 +153,21 @@ class Navbar
         };
 
         // Call the anonomous function to create the menu, and submenues if any.
-        $id = isset($menu["id"])
-            ? " id=\"{$menu["id"]}\""
+        $id = isset($menu[ "id" ])
+            ? " id=\"{$menu[ "id" ]}\""
             : null;
-        $class = isset($menu["class"])
-            ? " class=\"{$menu["class"]}\""
+        $class = isset($menu[ "class" ])
+            ? " class=\"{$menu[ "class" ]}\""
             : null;
 
         list($html) = $createMenu(
-            $menu["items"],
+            $menu[ "items" ],
             $id,
             $class
         );
 
         // Set the id & class element, only if it exists in the menu-array
-        $wrapper = $menu["wrapper"];
+        $wrapper = $menu[ "wrapper" ];
         if ($wrapper) {
             $html = "<{$wrapper}>{$html}</{$wrapper}>";
         }

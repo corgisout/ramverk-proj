@@ -29,14 +29,14 @@ class PasswordUserForm extends FormModel
             [
                 "id" => [
                     "type" => "hidden",
-                    "validation" => ["not_empty"],
+                    "validation" => [ "not_empty" ],
                     "readonly" => true,
                     "value" => $user->id,
                 ],
 
                 "password" => [
                     "type" => "password",
-                    "validation" => ["not_empty"],
+                    "validation" => [ "not_empty" ],
                 ],
 
                 "password-again" => [
@@ -49,7 +49,7 @@ class PasswordUserForm extends FormModel
                 "submit" => [
                     "type" => "submit",
                     "value" => "Save",
-                    "callback" => [$this, "callbackSubmit"]
+                    "callback" => [ $this, "callbackSubmit" ]
                 ],
 
             ]
